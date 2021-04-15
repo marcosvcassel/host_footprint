@@ -13,3 +13,4 @@ This is a learning project created to help me on my python learning journey, mix
 ## Future features:
 * Generate PDF and xls reports with the findings
 * Store all this in a database
+* Allow a db search form a minimalist web UI
