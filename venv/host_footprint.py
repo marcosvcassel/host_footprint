@@ -9,6 +9,14 @@ import json
 # novoResolver = dns.resolver.Resolver("<caminho do novo resolv.conf")
 
 
+
+
+def version():
+    print("host_footprint.py - 0.0.1")
+
+# def help():
+
+
 def resolve_dns(domain_name, query_type="A", verbose=True):
     try:
         dns_request = dns.resolver.resolve(domain_name, query_type, raise_on_no_answer=verbose)
@@ -40,17 +48,29 @@ domain_name = "sgnh.com.br"
 dns_recon_report_file = "dns_registers.txt"
 dns_findings = []
 
+opts = [opt for opt in sys.argv[1:] if opt.startswith("-")]
+args = [arg for arg in sys.argv[1:] if not arg.startswith("-")]
 
-for type in query_types:
-    dns_answer = resolve_dns(domain_name, type, verbose)
-    if dns_answer is None:
-        continue
-    else:
-        dns_findings.append(dns_answer)
+if "-d" in opts:
+    for type in query_types:
+        dns_answer = resolve_dns(domain_name, type, verbose)
+        if dns_answer is None:
+            continue
+        else:
+            dns_findings.append(dns_answer)
 
 
-with open(dns_recon_report_file, 'w') as dns_file_writer:
-    for dns_register in dns_findings:
-        dns_file_writer.writelines(dns_register.__str__())
-        dns_file_writer.write('\n')
+    with open(dns_recon_report_file, 'w') as dns_file_writer:
+        for dns_register in dns_findings:
+            dns_file_writer.writelines(dns_register.__str__())
+            dns_file_writer.write('\n')
+else:
+    raise SystemExit(f"Usage: {sys.argv[0]} (-d)")
+
+
+
+
+
+
+
 

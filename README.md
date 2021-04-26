@@ -1,9 +1,14 @@
 # Host footprint project
 
 This is a learning project created to help me on my python learning journey, mixing security and python programming. The intention of this tool, when finished is to provide a complete footprint of a given domain or IP that contains:
-* Dns records (DONE)
+* Dns records
+    * get the domain name from parameters
+    * get the filepath to record the findings from a paramater or assume registers.txt as a default
+    * get the query types from a parameter
 * Dns Subdomains
-* Whois information 
+    * execute a sub-domains brute force
+    * execute a sub-domains recon based on known words
+* Whois information
 * Open network ports and service banners
 * Shodan banners
 * Web Frameworks fingerprint if a web app
